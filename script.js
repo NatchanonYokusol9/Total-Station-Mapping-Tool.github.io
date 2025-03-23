@@ -28,7 +28,7 @@ function generateSurveyTable() {
             <th colspan="3">HA (มุมแนวราบ)</th>
             <th>VD (m)</th>
             <th>HD (m)</th>
-            <th>HI (m)</th>
+            <th>Hr/hr (m)</th>
         </tr>
         <tr>
             <th></th>
@@ -46,13 +46,13 @@ function generateSurveyTable() {
         let row = document.createElement("tr");
         row.innerHTML = `
             <td><input type="text" id="point_name_${i}" placeholder="ชื่อจุด"></td>
-            <td><input type="number" id="utm_zone_${i}" placeholder="Zone (47, 48)" min="1" max="60"></td>
+            <td><input type="number" id="utm_zone_${i}" placeholder="Zone" min="1" max="60"></td>
             <td><input type="number" id="ha_deg_${i}" min="0" max="359" placeholder="°"></td>
             <td><input type="number" id="ha_min_${i}" min="0" max="59" placeholder="'"></td>
             <td><input type="number" id="ha_sec_${i}" min="0" max="59" placeholder="''"></td>
             <td><input type="number" id="vd_${i}" placeholder="VD (m)"></td>
             <td><input type="number" id="hd_${i}" placeholder="HD (m)"></td>
-            <td><input type="number" id="hi_${i}" placeholder="HI (m)"></td>
+            <td><input type="number" id="hi_${i}" placeholder="Hr/hr (m)"></td>
         `;
         table.appendChild(row);
     }
@@ -139,7 +139,7 @@ function generateSurveyTable() {
             <th colspan="3">HA (มุมแนวราบ)</th>
             <th>VD (m)</th>
             <th>HD (m)</th>
-            <th>HI (m)</th>
+            <th>Hr/hr (m)</th>
         </tr>
         <tr>
             <th></th>
@@ -160,13 +160,13 @@ function generateSurveyTable() {
         let row = document.createElement("tr");
         row.innerHTML = `
             <td><input type="text" id="point_name_${i}" placeholder="ชื่อจุด" onchange="updateDropdownOptions()"></td>
-            <td><input type="number" id="utm_zone_${i}" placeholder="Zone (47, 48)" min="1" max="60"></td>
+            <td><input type="number" id="utm_zone_${i}" placeholder="Zone" min="1" max="60"></td>
             <td><input type="number" id="ha_deg_${i}" min="0" max="359" placeholder="°"></td>
             <td><input type="number" id="ha_min_${i}" min="0" max="59" placeholder="'"></td>
             <td><input type="number" id="ha_sec_${i}" min="0" max="59" placeholder="''"></td>
             <td><input type="number" id="vd_${i}" placeholder="VD (m)"></td>
             <td><input type="number" id="hd_${i}" placeholder="HD (m)"></td>
-            <td><input type="number" id="hi_${i}" placeholder="HI (m)"></td>
+            <td><input type="number" id="hi_${i}" placeholder="Hr/hr (m)"></td>
         `;
         table.appendChild(row);
     }
