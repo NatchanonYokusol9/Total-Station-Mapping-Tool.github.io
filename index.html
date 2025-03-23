@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณพิกัดจาก Total Station</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>คำนวณพิกัดจากการรังวัดด้วย Total Station</h1>
+
+        <section>
+            <h2>กำหนดจำนวนหมุดรังวัด</h2>
+            <input type="number" id="num_points" placeholder="จำนวนหมุดรังวัด">
+            <button onclick="generateSurveyTable()">สร้างตาราง</button>
+            <button onclick="clearSurveyTable()" class="delete-btn">ลบตาราง</button>
+            <div id="survey_table_container"></div>
+        </section>
+        
+        <section>
+            <h2>กำหนดพิกัดอ้างอิง</h2>
+            <label for="select_point">เลือกจุดที่ต้องการกำหนดพิกัด:</label>
+            <select id="select_point">
+                <option value="">-- เลือกจุด --</option>
+            </select>
+            <button onclick="generateControlTable()">เพิ่มข้อมูลพิกัด</button>
+            <button onclick="clearControlTable()" class="delete-btn">ลบตาราง</button>
+            <div id="control_table_container"></div>
+        </section>
+
+        <section>
+            <button onclick="calculateSurveyData()" class="calculate-btn">คำนวณพิกัด</button>
+            <button onclick="showCalculationPopup()" class="info-btn">แสดงวิธีคำนวณ</button>
+            <button onclick="openMapPage()" class="map-btn">แสดงแผนที่</button>
+            <button onclick="clearCalculatedData()" class="delete-btn">ลบผลลัพธ์</button>
+            <h2>ผลลัพธ์</h2>
+            <div id="result"></div>
+        </section>
+        
+        <!-- Popup สำหรับแสดงวิธีคำนวณ -->
+        <div id="calculationPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closeCalculationPopup()">&times;</span>
+                <h2>วิธีการคำนวณ</h2>
+                <div id="calculationSteps"></div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนที่พิกัดรังวัด</title>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+        .back-btn {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="goBack()">ย้อนกลับ</button>
+    <h1>แผนที่พิกัดรังวัด</h1>
+    <div id="map"></div>
+
+    <script>
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        // 📌 ดึงข้อมูลพิกัดจาก LocalStorage
+        let coordinates = JSON.parse(localStorage.getItem("mapCoordinates")) || [];
+
+        // 📌 กำหนดจุดเริ่มต้นของแผนที่ (ถ้ามีข้อมูล)
+        let mapCenter = coordinates.length > 0 ? [coordinates[0].lat, coordinates[0].lon] : [13.736717, 100.523186];
+
+        // 📌 สร้างแผนที่ด้วย Leaflet.js
+        let map = L.map('map').setView(mapCenter, 15);
+
+        // 📌 เพิ่ม Tile Layer (Google Maps)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 📌 วนลูปเพิ่ม Marker ลงในแผนที่
+        coordinates.forEach(point => {
+            L.marker([point.lat, point.lon])
+                .addTo(map)
+                .bindPopup(`<b>${point.name}</b><br>Lat: ${point.lat.toFixed(6)}<br>Lon: ${point.lon.toFixed(6)}`);
+        });
+    </script>
+</body>
+</html>
