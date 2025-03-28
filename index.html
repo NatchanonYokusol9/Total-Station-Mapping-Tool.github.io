@@ -6,6 +6,7 @@
     <title>คำนวณพิกัดจาก Total Station</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -35,6 +36,7 @@
             <button onclick="showCalculationPopup()" class="info-btn">แสดงวิธีคำนวณ</button>
             <button onclick="openMapPage()" class="map-btn">แสดงแผนที่</button>
             <button onclick="clearCalculatedData()" class="delete-btn">ลบผลลัพธ์</button>
+            <button onclick="exportToExcel()" class="excel-btn">ดาวน์โหลด Excel</button>
             <h2>ผลลัพธ์</h2>
             <div id="result"></div>
         </section>
