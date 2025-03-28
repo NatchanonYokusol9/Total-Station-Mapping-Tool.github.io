@@ -515,3 +515,42 @@ function clearCalculatedData() {
         alert("ลบข้อมูลสำเร็จ! กรุณากรอกข้อมูลใหม่เพื่อคำนวณอีกครั้ง");
     }
 }
+function exportToExcel() {
+    let resultTable = document.getElementById("result").getElementsByTagName("table")[0];
+
+    if (!resultTable) {
+        alert("⚠ ไม่มีข้อมูลให้ดาวน์โหลด กรุณาคำนวณพิกัดก่อน!");
+        return;
+    }
+
+    let rows = resultTable.getElementsByTagName("tr");
+    let data = [];
+
+    // 📌 หัวข้อของ Excel
+    data.push(["ชื่อหมุด", "Zone", "Azimuth (°)", "Easting (m)", "Northing (m)", "Latitude", "Longitude"]);
+
+    // 📌 อ่านข้อมูลจากตาราง
+    for (let i = 1; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td");
+        if (cells.length >= 7) {
+            let rowData = [
+                cells[0].innerText, // ชื่อหมุด
+                cells[1].innerText, // Zone
+                cells[2].innerText, // Azimuth
+                cells[3].innerText, // Easting
+                cells[4].innerText, // Northing
+                cells[5].innerText, // Latitude
+                cells[6].innerText  // Longitude
+            ];
+            data.push(rowData);
+        }
+    }
+
+    // 📌 สร้างไฟล์ Excel
+    let ws = XLSX.utils.aoa_to_sheet(data);
+    let wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "ผลลัพธ์พิกัด");
+
+    // 📌 บันทึกเป็นไฟล์ Excel
+    XLSX.writeFile(wb, "พิกัดรังวัด.xlsx");
+}
